@@ -1,11 +1,14 @@
 package com.ionela.rest.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,26 +17,22 @@ public class Articulo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column
 	private String nombre;
+	@Column
 	private int precio;
 
 	@ManyToOne
 	@JoinColumn(name = "fabricante")
-	Fabricante fabricante;
+	private Fabricante fabricante;
 
 	public Articulo() {
 
 	}
 
-	public Articulo(Long id, String nombre, int precio) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.precio = precio;
-	}
-
+	
 	public Articulo(Long id, String nombre, int precio, Fabricante fabricante) {
-		super();
+		
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
